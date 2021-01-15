@@ -1,0 +1,41 @@
+.card {
+  background: #ffffff;
+  border: 1px solid #e4e4e8;
+  border-radius: 4px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 14px;
+  color: #2f3136;
+}
+
+.action-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 28px;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.weight {
+  display: flex;
+}
+
+.weight img {
+  margin-right: 10.67px;
+  width: 10.67px;
+}
+
+.weight p {
+  font-size: 12px;
+  line-height: 16px;
+  color: #5d6372;
+}
