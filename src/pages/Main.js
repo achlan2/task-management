@@ -1,9 +1,10 @@
 import React from 'react'
+import Board from '../components/board/Board'
 
 const Main = () => {
   return (
-    <div>
-      Main Page
+    <div className='main-container'>
+      <Board title='Q1 2019' subtitle='January - March' />
     </div>
   )
 }

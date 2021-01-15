@@ -1,6 +1,7 @@
 .container {
   display: flex;
   height: 100vh;
+  background-color: #fefeff;
 }
 
 .sidebar {
@@ -15,4 +16,37 @@
 .main-section {
   margin-top: 20px;
   margin-left: 50px;
+}
+
+.main-section h1 {
+  font-weight: 600;
+  font-size: 20;
+  line-height: 24px;
+}
+
+.main-container {
+  margin-top: 24px;
+}
+
+.board {
+  background: #fefeff;
+  border: 1px solid #f2f2f4;
+  border-radius: 4px;
+  padding-top: 12px;
+  padding-right: 12px;
+  padding-left: 12px;
+}
+
+.board h4 {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+  color: #5d6372;
+}
+
+.board h4.subtitle {
+  font-weight: 600;
+  font-size: 14px;
+  color: #5d6372;
+  margin-top: 4px;
 }
