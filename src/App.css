@@ -37,7 +37,7 @@
   padding-top: 12px;
   padding-right: 12px;
   padding-left: 12px;
-  max-width: 306px;
+  min-width: 306px;
   margin-right: 16px;
 }
 
