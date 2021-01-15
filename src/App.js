@@ -1,5 +1,6 @@
 import React from 'react'
 import "./App.css";
+import Main from './pages/Main';
 
 const App = () => {
   return (
@@ -9,6 +10,7 @@ const App = () => {
       </div>
       <div className="main-section">
         <h1>Product Roadmap</h1>
+        <Main/>
       </div>
     </div>
   )
