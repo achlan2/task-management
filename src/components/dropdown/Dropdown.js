@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import Modal from '../../layout/Modal'
 import Overlay from '../../layout/Overlay'
 import DeleteDialog from '../dialog/DeleteDialog'
+import ManageTaskDialog from '../dialog/ManageTaskDialog'
 import './Dropdown.css'
 
-const Dropdown = ({onClose, position}) => {
+const Dropdown = ({onClose, position, data}) => {
   const [isDeleteOpen, setDeleteOpen] = useState(false)
   const [isEditOpen, setEditOpen] = useState(false)
 
@@ -41,7 +42,10 @@ const Dropdown = ({onClose, position}) => {
         </li>
       </ul>
       <Modal open={isDeleteOpen} onClose={()=>setDeleteOpen(false)}>
-        <DeleteDialog/>
+        <DeleteDialog onClose={()=>setDeleteOpen(false)}/>
+      </Modal>
+      <Modal open={isEditOpen} onClose={()=>setEditOpen(false)}>
+        <ManageTaskDialog type='edit' onClose={()=>setEditOpen(false)} data={data}/>
       </Modal>
     </>
   )

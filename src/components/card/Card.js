@@ -24,7 +24,7 @@ const Card = ({title, weight}) => {
             <img src="/icons/dots.svg" alt="dot"/>
           </button>
           {isOpen && (
-            <Dropdown position='first' onClose={()=>setOpen(false)}/>
+            <Dropdown position='first' onClose={()=>setOpen(false)} data={{title, weight}}/>
           )}
         </div>
       </div>
