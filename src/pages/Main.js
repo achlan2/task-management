@@ -5,6 +5,15 @@ const Main = () => {
   return (
     <div className='main-container'>
       <Board title='Q1 2019' subtitle='January - March' />
+      <Board title='Q1 2019' subtitle='January - March' />
+      <Board title='Q1 2019' subtitle='January - March' />
+      <Board title='Q1 2019' subtitle='January - March' />
+      <Board title='Q1 2019' subtitle='January - March' />
+      <Board title='Q1 2019' subtitle='January - March' />
+      <Board title='Q1 2019' subtitle='January - March' />
+      <Board title='Q1 2019' subtitle='January - March' />
+      <Board title='Q1 2019' subtitle='January - March' />
+      <Board title='Q1 2019' subtitle='January - March' />
     </div>
   )
 }

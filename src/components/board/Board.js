@@ -13,7 +13,7 @@ const Board = ({title, subtitle}) => {
       <h4 className="subtitle">{subtitle}</h4>
       <div className="card-container">
         <Card title='Re-designed the zero-g doggie bags. No more spills!' weight='64' />
-        <Card title='Re-designed the zero-g doggie bags. No more spills!' weight='64' />
+        <Card title='Re-designed the zero-g doggie bags. No  spills!' weight='64' />
       </div>
       <div className="add-wrapper" onClick={()=>setCreateOpen(true)}>
         <div className="img-wrapper">
