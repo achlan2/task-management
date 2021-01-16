@@ -2,6 +2,7 @@ import React from 'react'
 import "./App.css";
 import Main from './pages/Main';
 import {Provider as BoardProvider} from './context/BoardContext'
+import {Provider as TaskProvider} from './context/TaskContext'
 
 const App = () => {
   return (
@@ -12,7 +13,9 @@ const App = () => {
       <div className="main-section">
         <h1>Product Roadmap</h1>
         <BoardProvider>
-          <Main/>
+          <TaskProvider>
+            <Main/>
+          </TaskProvider>
         </BoardProvider>
       </div>
     </div>
