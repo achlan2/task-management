@@ -1,6 +1,7 @@
 import React from 'react'
 import "./App.css";
 import Main from './pages/Main';
+import {Provider as BoardProvider} from './context/BoardContext'
 
 const App = () => {
   return (
@@ -10,7 +11,9 @@ const App = () => {
       </div>
       <div className="main-section">
         <h1>Product Roadmap</h1>
-        <Main/>
+        <BoardProvider>
+          <Main/>
+        </BoardProvider>
       </div>
     </div>
   )
