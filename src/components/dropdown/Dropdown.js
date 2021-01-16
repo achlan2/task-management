@@ -43,7 +43,7 @@ const Dropdown = ({onClose, position, data}) => {
         </li>
       </ul>
       <Modal open={isDeleteOpen} onClose={()=>setDeleteOpen(false)}>
-        <DeleteDialog onClose={()=>setDeleteOpen(false)}/>
+        <DeleteDialog onClose={()=>setDeleteOpen(false)} id={data.id}/>
       </Modal>
       <Modal open={isEditOpen} onClose={()=>setEditOpen(false)}>
         <ManageTaskDialog type='edit' onClose={()=>setEditOpen(false)} data={data}/>
