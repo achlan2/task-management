@@ -15,7 +15,6 @@ const taskReducer = (state, action) => {
     case 'add_task': {
       const { to, data } = action.payload
       let target = Array.from(state[to])
-      console.log('data reducer', data, target)
       target.push(data)
       return {
         ...state,
@@ -28,7 +27,7 @@ const taskReducer = (state, action) => {
       const removed = Array.from(state[from]).filter(task => task.id !== data.id)
       let target = Array.from(state[to])
       target.push(data)
-      target.sort((a, b) => b.id - a.id)
+      // target.sort((a, b) => b.id - a.id)
       return {
         ...state,
         [from]: removed,
@@ -37,10 +36,10 @@ const taskReducer = (state, action) => {
     }
     case 'fetch_task': {
       const { boardId, data } = action.payload
-      const sortedData = data.sort((a, b) => b.id - a.id)
+      // const sortedData = data.sort((a, b) => b.id - a.id)
       return {
         ...state,
-        [boardId]: sortedData
+        [boardId]: data
       }
     }
     default:
