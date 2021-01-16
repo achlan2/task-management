@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import Dropdown from '../dropdown/Dropdown'
 import './Card.css'
 
-const Card = ({title, weight, id, position, moveLeft, moveRight, removeTask}) => {
+const Card = ({ title, weight, id, position, moveLeft, moveRight, removeTask, boardId }) => {
 
   const [isOpen, setOpen] = useState(false)
 
-  const dropdownToggle = (e)=>{
+  const dropdownToggle = (e) => {
     e.preventDefault()
-    setOpen(isOpen=>!isOpen)
+    setOpen(isOpen => !isOpen)
   }
 
   return (
@@ -16,21 +16,22 @@ const Card = ({title, weight, id, position, moveLeft, moveRight, removeTask}) =>
       <h3 className="title">{title}</h3>
       <div className="action-container">
         <div className="weight">
-          <img src="/icons/weight.svg" alt="weight-icon"/>
+          <img src="/icons/weight.svg" alt="weight-icon" />
           <p>{weight}%</p>
         </div>
-        <div className={ !isOpen ? "button-wrapper" : "button-wrapper grey"}>
+        <div className={!isOpen ? "button-wrapper" : "button-wrapper grey"}>
           <button onClick={dropdownToggle}>
-            <img src="/icons/dots.svg" alt="dot"/>
+            <img src="/icons/dots.svg" alt="dot" />
           </button>
           {isOpen && (
-            <Dropdown 
-              position={position} 
-              onClose={()=>setOpen(false)} 
-              data={{title, weight, id}} 
-              moveLeft={moveLeft} 
+            <Dropdown
+              position={position}
+              onClose={() => setOpen(false)}
+              data={{ title, weight, id }}
+              moveLeft={moveLeft}
               moveRight={moveRight}
               removeTask={removeTask}
+              boardId={boardId}
             />
           )}
         </div>
