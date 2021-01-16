@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Dropdown from '../dropdown/Dropdown'
 import './Card.css'
 
 const Card = ({title, weight}) => {
@@ -18,9 +19,14 @@ const Card = ({title, weight}) => {
           <img src="/icons/weight.svg" alt="weight-icon"/>
           <p>{weight}%</p>
         </div>
-        <button onClick={dropdownToggle}>
-          <img src="/icons/dots.svg" alt="dot"/>
-        </button>
+        <div className="button-wrapper">
+          <button onClick={dropdownToggle}>
+            <img src="/icons/dots.svg" alt="dot"/>
+          </button>
+          {isOpen && (
+            <Dropdown position='first' onClose={()=>setOpen(false)}/>
+          )}
+        </div>
       </div>
     </div>
   )
