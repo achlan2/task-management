@@ -18,9 +18,9 @@ const Main = () => {
   return (
     <div className='main-container'>
       {boards.length !== 0 ? 
-        boards.map(board=>(
+        boards.map((board, index)=>(
 
-          <Board title={board.title} description={board.description} id={board.id}/>
+          <Board title={board.title} description={board.description} id={board.id} key={board.id} index={index} boardLength={boards.length}/>
         ))
       :null}
     </div>
