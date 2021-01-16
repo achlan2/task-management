@@ -16,6 +16,9 @@ button {
 .sidebar {
   width: 68px;
   background-color: #1a0931;
+  /* position: fixed;
+  left: 0;
+  height: 100vh; */
 }
 
 .sidebar img {
@@ -126,6 +129,10 @@ h4.subtitle {
   width: 352px;
 }
 
+.dialog-manage-task {
+  width: 600px;
+}
+
 .dialog-header {
   display: flex;
   justify-content: space-between;
@@ -168,6 +175,57 @@ button.clear {
   color: #2f3136;
 }
 
+button.primary {
+  background: #5e20b3;
+  color: #fff;
+}
+
 .close {
   cursor: pointer;
+}
+
+.form {
+  margin-top: 16px;
+}
+
+.form-control {
+  margin-bottom: 16px;
+}
+
+.form-control .label {
+  margin-bottom: 8px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+  color: #5d6372;
+}
+
+input {
+  background: #ffffff;
+  border: 1px solid #d6d6dd;
+  border-radius: 4px;
+  padding: 8px;
+  outline: inherit;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+input::placeholder {
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 19px;
+  color: #b7bdc9;
+}
+
+input.block {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+}
+
+input.input-weight {
+  width: 64px;
 }
