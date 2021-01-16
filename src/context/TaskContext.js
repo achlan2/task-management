@@ -3,19 +3,31 @@ import happyApi from '../api/happy'
 
 const taskReducer = (state, action) => {
   switch(action.type){
-    case 'remove_task':
+    case 'remove_task':{
       const {from, id} = action.payload
       const filter = Array.from(state[from]).filter(task=>task.id !== id)
       return {
         ...state,
         [from]: filter
       }
-
-    case 'fetch_task': 
+    }
+    case 'move_task':{
+      const { from, to, data } = action.payload
+      const removed = Array.from(state[from]).filter(task=>task.id !== data.id) 
+      let target = Array.from(state[to])
+      target.push(data)
+      return {
+        ...state,
+        [from] : removed,
+        [to] : target
+      }
+    }
+    case 'fetch_task': {
       const { boardId, data } = action.payload
       return {
         ...state,
         [boardId]: data
+      }
     }
     default:
       return state
@@ -29,7 +41,6 @@ const fetchTaskPerBoard = dispatch => async (id) => {
   // })
   try {
     const response = await happyApi.get(`/boards/${id}/tasks`);
-    console.log('fetch')
     dispatch({ 
       type:'fetch_task',  
       payload: {
@@ -44,7 +55,6 @@ const fetchTaskPerBoard = dispatch => async (id) => {
 }
 
 const removeTask = dispatch => (from, id) => {
-  console.log('remove', from, id)
   dispatch({
     type:'remove_task',
     payload:{
@@ -54,8 +64,27 @@ const removeTask = dispatch => (from, id) => {
   })
 }
 
+const moveTask = dispatch => (from, to, data) => {
+  dispatch({
+    type: 'move_task',
+    payload:{
+      from,
+      to,
+      data:{
+        id:data.id,
+        title:data.title,
+        userId:data.userId,
+        weight:data.weight,
+        createdAt:data.createdAt,
+        updatedAt:data.updatedAt,
+        boardId:to
+      }
+    }
+  })
+}
+
 export const {Provider, Context} = createDataContext(
   taskReducer,
-  { fetchTaskPerBoard, removeTask },
+  { fetchTaskPerBoard, removeTask, moveTask },
   []
 )
