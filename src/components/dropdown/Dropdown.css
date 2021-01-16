@@ -15,11 +15,15 @@
   display: flex;
 }
 
-.dropdown li img {
-  margin-right: 11.67px;
-}
-
 .dropdown li:hover {
   background-color: #f5f0fc;
   cursor: pointer;
+}
+
+.img-wrapper {
+  width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
 }
