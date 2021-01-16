@@ -80,23 +80,31 @@ const removeTask = dispatch => async (from, id) => {
   }
 }
 
-const moveTask = dispatch => (from, to, data) => {
-  dispatch({
-    type: 'move_task',
-    payload: {
-      from,
-      to,
-      data: {
-        id: data.id,
-        title: data.title,
-        userId: data.userId,
-        weight: data.weight,
-        createdAt: data.createdAt,
-        updatedAt: data.updatedAt,
-        boardId: to
+const moveTask = dispatch => async (from, to, data) => {
+  try {
+
+    dispatch({
+      type: 'move_task',
+      payload: {
+        from,
+        to,
+        data: {
+          id: data.id,
+          title: data.title,
+          userId: data.userId,
+          weight: data.weight,
+          createdAt: data.createdAt,
+          updatedAt: data.updatedAt,
+          boardId: to
+        }
       }
-    }
-  })
+    })
+
+    await happyApi.put(`/tasks/${data.id}/move/target/${to}`)
+
+  } catch (e) {
+
+  }
 }
 
 const addTask = dispatch => async (boardId, title, weight) => {
