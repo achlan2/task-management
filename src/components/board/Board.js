@@ -4,7 +4,7 @@ import Card from '../card/Card'
 import ManageTaskDialog from '../dialog/ManageTaskDialog'
 import happyApi from '../../api/happy'
 
-const Board = ({title, description,id, index, boardLength}) => {
+const Board = ({title, description,id, index, boardLength, nextId, prevId, moveTask}) => {
 
   const [cards, setCards] = useState([])
 
@@ -18,7 +18,7 @@ const Board = ({title, description,id, index, boardLength}) => {
     }
 
     fetch()
-  }, [])
+  }, [id])
 
   return (
     <div className='board' key={id}>
@@ -27,7 +27,7 @@ const Board = ({title, description,id, index, boardLength}) => {
       <div className="card-container">
         {cards.length !== 0 ?
           cards.map((card)=>(
-            <Card key={card.id} title={card.title} weight={card.weight} id={card.id} position={index === 0 ? 'first' : index === boardLength-1 ? 'end' : 'center'}/>
+            <Card key={card.id} title={card.title} weight={card.weight} id={card.id} position={index === 0 ? 'first' : index === boardLength-1 ? 'end' : 'center'} moveLeft={()=>moveTask(prevId,card.id)} moveRight={()=>moveTask(nextId,card.id)}/>
           ))
         :(
           <p className='no-task'>No Task Available</p>

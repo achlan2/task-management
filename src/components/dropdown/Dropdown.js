@@ -5,7 +5,7 @@ import DeleteDialog from '../dialog/DeleteDialog'
 import ManageTaskDialog from '../dialog/ManageTaskDialog'
 import './Dropdown.css'
 
-const Dropdown = ({onClose, position, data}) => {
+const Dropdown = ({onClose, position, data, moveLeft, moveRight}) => {
   const [isDeleteOpen, setDeleteOpen] = useState(false)
   const [isEditOpen, setEditOpen] = useState(false)
 
@@ -14,7 +14,7 @@ const Dropdown = ({onClose, position, data}) => {
       <Overlay callback={onClose}/>
       <ul className="dropdown">
         {position === 'end' || position === 'center' ? (
-          <li>
+          <li onClick={moveLeft}>
             <div className="img-wrapper">
               <img src="/icons/left-arrow.svg" alt="left-icon"/>
             </div>
@@ -22,7 +22,7 @@ const Dropdown = ({onClose, position, data}) => {
           </li>
         ):null}
          {position === 'first' || position === 'center' ? (
-          <li>
+          <li onClick={moveRight}>
             <div className="img-wrapper">
               <img src="/icons/right-arrow.svg" alt="right-icon"/>
             </div>
