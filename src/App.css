@@ -246,4 +246,7 @@ input.block {
 
 input.input-weight {
   width: 64px;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 19px;
 }
