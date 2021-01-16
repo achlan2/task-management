@@ -16,7 +16,9 @@ const Card = ({ title, weight, id, position, moveLeft, moveRight, removeTask, bo
       <h3 className="title">{title}</h3>
       <div className="action-container">
         <div className="weight">
-          <img src="/icons/weight.svg" alt="weight-icon" />
+          <div className="weight-wrapper">
+            <img src="/icons/weight.svg" alt="weight-icon" />
+          </div>
           <p>{weight}%</p>
         </div>
         <div className={!isOpen ? "button-wrapper" : "button-wrapper grey"}>
