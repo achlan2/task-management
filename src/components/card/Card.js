@@ -19,7 +19,7 @@ const Card = ({title, weight}) => {
           <img src="/icons/weight.svg" alt="weight-icon"/>
           <p>{weight}%</p>
         </div>
-        <div className="button-wrapper">
+        <div className={ !isOpen ? "button-wrapper" : "button-wrapper grey"}>
           <button onClick={dropdownToggle}>
             <img src="/icons/dots.svg" alt="dot"/>
           </button>
