@@ -36,7 +36,7 @@ const ManageTaskDialog = ({ onClose, type, data, boardId }) => {
         </div>
         <div className="form-control">
           <p className='label'>Weight</p>
-          <div className="weight-wrapper">
+          <div>
             <input type="text" placeholder='0' className='input-weight' value={weight} onChange={(e) => setWeight(e.target.value)} /> %
           </div>
         </div>
