@@ -62,14 +62,22 @@ const fetchTaskPerBoard = dispatch => async (id) => {
   }
 }
 
-const removeTask = dispatch => (from, id) => {
-  dispatch({
-    type: 'remove_task',
-    payload: {
-      from,
-      id
-    }
-  })
+const removeTask = dispatch => async (from, id) => {
+  try {
+
+    dispatch({
+      type: 'remove_task',
+      payload: {
+        from,
+        id
+      }
+    })
+
+    await happyApi.delete(`/tasks/${id}`)
+
+  } catch (error) {
+
+  }
 }
 
 const moveTask = dispatch => (from, to, data) => {
