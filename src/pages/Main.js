@@ -20,7 +20,7 @@ const Main = () => {
       {boards.length !== 0 ? 
         boards.map(board=>(
 
-          <Board title={board.title} description={board.description} key={board.id}/>
+          <Board title={board.title} description={board.description} id={board.id}/>
         ))
       :null}
     </div>
