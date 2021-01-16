@@ -30,7 +30,7 @@ const Board = ({title, description,id, index, boardLength}) => {
             <Card key={card.id} title={card.title} weight={card.weight} id={card.id} position={index === 0 ? 'first' : index === boardLength-1 ? 'end' : 'center'}/>
           ))
         :(
-          <p>No Task Available</p>
+          <p className='no-task'>No Task Available</p>
         )}
       </div>
       <div className="add-wrapper" onClick={()=>setCreateOpen(true)}>

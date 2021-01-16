@@ -94,6 +94,15 @@ h4.subtitle {
   margin-top: 16px;
 }
 
+.card-container .no-task {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+  color: #b7bdc9;
+  margin-bottom: 6;
+}
+
 .overlay {
   position: fixed;
   top: 0;
