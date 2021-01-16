@@ -64,6 +64,25 @@ h4.subtitle {
   margin-top: 4px;
 }
 
+.add-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+  cursor: pointer;
+}
+
+.add-wrapper p {
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  color: #2f3136;
+}
+
+.add-wrapper .img-wrapper {
+  width: 16px;
+  height: 16px;
+}
+
 .card-container {
   margin-top: 16px;
 }
