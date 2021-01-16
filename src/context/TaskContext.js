@@ -28,6 +28,7 @@ const taskReducer = (state, action) => {
       const removed = Array.from(state[from]).filter(task => task.id !== data.id)
       let target = Array.from(state[to])
       target.push(data)
+      target.sort((a, b) => b.id - a.id)
       return {
         ...state,
         [from]: removed,
@@ -36,9 +37,10 @@ const taskReducer = (state, action) => {
     }
     case 'fetch_task': {
       const { boardId, data } = action.payload
+      const sortedData = data.sort((a, b) => b.id - a.id)
       return {
         ...state,
-        [boardId]: data
+        [boardId]: sortedData
       }
     }
     default:
