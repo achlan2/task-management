@@ -2,7 +2,6 @@
   background: #ffffff;
   border: 1px solid #e4e4e8;
   border-radius: 4px;
-  padding: 16px;
   margin-bottom: 12px;
 }
 
@@ -10,12 +9,18 @@
   font-weight: 600;
   font-size: 14px;
   color: #2f3136;
+  margin: 16px;
 }
 
 .action-container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-top: 28px;
+  margin-left: 18.67px;
+  margin-right: 8px;
+  margin-bottom: 6px;
+  position: relative;
 }
 
 button {
@@ -23,10 +28,12 @@ button {
   border: none;
   cursor: pointer;
   outline: inherit;
+  padding: 9.75px;
 }
 
 .weight {
   display: flex;
+  align-items: baseline;
 }
 
 .weight img {
