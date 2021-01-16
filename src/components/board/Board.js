@@ -1,27 +1,27 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Modal from '../../layout/Modal'
 import Card from '../card/Card'
 import ManageTaskDialog from '../dialog/ManageTaskDialog'
 import happyApi from '../../api/happy'
+import {Context as TaskContext} from '../../context/TaskContext'
 
 const Board = ({title, description,id, index, boardLength, nextId, prevId, moveTask}) => {
 
   const [cards, setCards] = useState([])
+  const [test, setTest] = useState(false)
 
   const [isCreateOpen, setCreateOpen] = useState(false)
+  const {fetchTaskPerBoard, state} = useContext(TaskContext)
 
   useEffect(() => {
-    const fetch = async()=>{
-      const response = await happyApi.get(`/boards/${id}/tasks`);
-      console.log(response.data)
-      setCards(response.data)
-    }
+    fetchTaskPerBoard(id)
+  }, [])
 
-    fetch()
-  }, [id])
+  // console.log('state a',state);
 
+  
   return (
-    <div className='board' key={id}>
+    <div className='board' key={id} onClick={()=>setCards(cards=>[...cards, {id:1,title:'aduh',weight:5}])}>
       <h4>{title}</h4>
       <h4 className="description">{description}</h4>
       <div className="card-container">
