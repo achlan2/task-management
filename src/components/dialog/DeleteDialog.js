@@ -1,15 +1,15 @@
 import React from 'react'
 import happyApi from '../../api/happy'
 
-const DeleteDialog = ({onClose, id, callback}) => {
+const DeleteDialog = ({ onClose, id, callback }) => {
 
   const deleteHandler = async (e) => {
     e.preventDefault()
-    try{
+    try {
       // const response = await happyApi.delete(`/tasks/${id}`)
       callback()
       onClose()
-    }catch(e){
+    } catch (e) {
     }
   }
 

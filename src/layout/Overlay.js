@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Overlay = ({callback}) => {
+const Overlay = ({ callback }) => {
   return (
-    <div className='overlay' onClick={callback}/>
+    <div className='overlay' onClick={callback} />
   )
 }
 

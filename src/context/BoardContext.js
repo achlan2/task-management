@@ -2,7 +2,7 @@ import happyApi from '../api/happy'
 import createDataContext from './createDataContext'
 
 const boardReducer = (state, action) => {
-  switch(action.type){
+  switch (action.type) {
     case 'fetch_board':
       return action.payload
     default:
@@ -12,11 +12,11 @@ const boardReducer = (state, action) => {
 
 const fetchBoard = dispatch => async () => {
   const response = await happyApi.get('/boards');
-  dispatch({type: 'fetch_board', payload: response.data})
+  dispatch({ type: 'fetch_board', payload: response.data })
 }
 
 export const { Context, Provider } = createDataContext(
   boardReducer,
-  {fetchBoard},
+  { fetchBoard },
   []
 )
