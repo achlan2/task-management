@@ -5,17 +5,17 @@ import ManageTaskDialog from '../dialog/ManageTaskDialog'
 import happyApi from '../../api/happy'
 import {Context as TaskContext} from '../../context/TaskContext'
 
-const Board = ({title, description,id, index, boardLength, nextId, prevId, moveTask}) => {
+const Board = ({title, description,id, index, boardLength, nextId, prevId}) => {
 
   const [listReady, setListReady] = useState(false)
 
   const [isCreateOpen, setCreateOpen] = useState(false)
-  const {fetchTaskPerBoard, removeTask, state} = useContext(TaskContext)
+  const {fetchTaskPerBoard, removeTask, moveTask, state} = useContext(TaskContext)
 
   useEffect(() => {
     fetchTaskPerBoard(id).then(()=>setListReady(true))
   }, [])
-  
+
   return (
     <div className='board' key={id}>
       <h4>{title}</h4>
@@ -29,8 +29,8 @@ const Board = ({title, description,id, index, boardLength, nextId, prevId, moveT
               weight={card.weight} 
               id={card.id} 
               position={index === 0 ? 'first' : index === boardLength-1 ? 'end' : 'center'} 
-              moveLeft={()=>moveTask(prevId,card.id)} 
-              moveRight={()=>moveTask(nextId,card.id)} 
+              moveLeft={()=>moveTask(card.boardId, prevId,card)} 
+              moveRight={()=>moveTask(card.boardId, nextId,card)} 
               removeTask={()=>removeTask(card.boardId, card.id)}
             />
           ))
