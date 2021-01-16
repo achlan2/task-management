@@ -1,5 +1,4 @@
 import React from 'react'
-import happyApi from '../../api/happy'
 
 const DeleteDialog = ({ onClose, id, callback }) => {
 

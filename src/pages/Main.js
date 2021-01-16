@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Board from '../components/board/Board'
-import happyApi from '../api/happy'
 import { Context as BoardContext } from '../context/BoardContext'
 
 const Main = () => {
@@ -9,7 +8,7 @@ const Main = () => {
 
   useEffect(() => {
     fetchBoard()
-  }, [])
+  }, [fetchBoard])
 
   return (
     <div className='main-container'>

@@ -13,7 +13,7 @@ const ManageTaskDialog = ({ onClose, type, data, boardId }) => {
       setName(data.title)
       setWeight(data.weight)
     }
-  }, [])
+  }, [data.title, data.weight])
 
   const submitHandler = (e) => {
     if (type === 'create') {

@@ -13,7 +13,7 @@ const Board = ({ title, description, id, index, boardLength, nextId, prevId }) =
 
   useEffect(() => {
     fetchTaskPerBoard(id).then(() => setListReady(true))
-  }, [])
+  }, [fetchTaskPerBoard, id])
 
   return (
     <div className='board' key={id}>
