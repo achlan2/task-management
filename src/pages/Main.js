@@ -8,7 +8,7 @@ const Main = () => {
 
   useEffect(() => {
     fetchBoard()
-  }, [fetchBoard])
+  }, [])
 
   return (
     <div className='main-container'>
