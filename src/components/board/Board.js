@@ -4,7 +4,7 @@ import Card from '../card/Card'
 import ManageTaskDialog from '../dialog/ManageTaskDialog'
 import { Context as TaskContext } from '../../context/TaskContext'
 
-const Board = ({ title, description, id, index, boardLength, nextId, prevId }) => {
+const Board = ({ title, description, id, indexBoard, boardLength, nextId, prevId }) => {
 
   const [listReady, setListReady] = useState(false)
 
@@ -29,7 +29,7 @@ const Board = ({ title, description, id, index, boardLength, nextId, prevId }) =
                 title={card.title}
                 weight={card.weight}
                 id={card.id}
-                position={index === 0 ? 'first' : index === boardLength - 1 ? 'end' : 'center'}
+                position={indexBoard === 0 ? 'first' : indexBoard === boardLength - 1 ? 'end' : 'center'}
                 moveLeft={() => moveTask(id, prevId, card)}
                 moveRight={() => moveTask(id, nextId, card)}
                 removeTask={() => removeTask(id, card.id)}

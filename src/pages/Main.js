@@ -19,7 +19,7 @@ const Main = () => {
             description={board.description}
             id={board.id}
             key={board.id}
-            index={index}
+            indexBoard={index}
             boardLength={state.length}
             prevId={index === 0 ? null : state[index - 1].id}
             nextId={index === state.length - 1 ? null : state[index + 1].id}
