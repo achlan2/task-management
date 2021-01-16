@@ -7,27 +7,32 @@ import {Context as TaskContext} from '../../context/TaskContext'
 
 const Board = ({title, description,id, index, boardLength, nextId, prevId, moveTask}) => {
 
-  const [cards, setCards] = useState([])
-  const [test, setTest] = useState(false)
+  const [listReady, setListReady] = useState(false)
 
   const [isCreateOpen, setCreateOpen] = useState(false)
-  const {fetchTaskPerBoard, state} = useContext(TaskContext)
+  const {fetchTaskPerBoard, removeTask, state} = useContext(TaskContext)
 
   useEffect(() => {
-    fetchTaskPerBoard(id)
+    fetchTaskPerBoard(id).then(()=>setListReady(true))
   }, [])
-
-  // console.log('state a',state);
-
   
   return (
-    <div className='board' key={id} onClick={()=>setCards(cards=>[...cards, {id:1,title:'aduh',weight:5}])}>
+    <div className='board' key={id}>
       <h4>{title}</h4>
       <h4 className="description">{description}</h4>
       <div className="card-container">
-        {cards.length !== 0 ?
-          cards.map((card)=>(
-            <Card key={card.id} title={card.title} weight={card.weight} id={card.id} position={index === 0 ? 'first' : index === boardLength-1 ? 'end' : 'center'} moveLeft={()=>moveTask(prevId,card.id)} moveRight={()=>moveTask(nextId,card.id)}/>
+        {listReady && state[id].length !== 0 ?
+          state[id].map((card)=>(
+            <Card 
+              key={card.id} 
+              title={card.title} 
+              weight={card.weight} 
+              id={card.id} 
+              position={index === 0 ? 'first' : index === boardLength-1 ? 'end' : 'center'} 
+              moveLeft={()=>moveTask(prevId,card.id)} 
+              moveRight={()=>moveTask(nextId,card.id)} 
+              removeTask={()=>removeTask(card.boardId, card.id)}
+            />
           ))
         :(
           <p className='no-task'>No Task Available</p>
