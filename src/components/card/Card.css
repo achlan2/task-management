@@ -1,39 +1,64 @@
 .card {
+  margin:0;
+  padding: 0;
   background: #ffffff;
   border: 1px solid #e4e4e8;
   border-radius: 4px;
-  margin-bottom: 12px;
-  width: 100%;
+  margin-top: 12px;
+  width: 282px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  height: auto;
 }
 
 .title {
+  font-style: normal;
   font-weight: 600;
   font-size: 14px;
+  line-height: 20px;
   color: #2f3136;
   margin: 16px;
 }
 
 .action-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-  margin-left: 18.67px;
+  margin-left: 16px;
   margin-right: 8px;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   position: relative;
+  /* background-color: red; */
 }
 
 .weight {
   display: flex;
   align-items: baseline;
+  position: absolute;
+  left: 0;
+  bottom: 8px;
+}
+
+.weight-wrapper {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .weight img {
-  margin-right: 10.67px;
-  width: 10.67px;
+  width: 12px;
+  height: 10px;
 }
 
 .weight p {
+  font-style: normal;
+  font-weight: normal;
   font-size: 12px;
   line-height: 16px;
   color: #5d6372;
@@ -41,6 +66,11 @@
 
 .action-container .button-wrapper button {
   border-radius: 4px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .action-container .button-wrapper button:hover {
