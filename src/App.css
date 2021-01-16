@@ -1,8 +1,8 @@
 .container {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #fefeff;
-  overflow: auto;
+  position: relative;
 }
 
 button {
@@ -16,10 +16,13 @@ button {
 
 .sidebar {
   width: 68px;
+  min-height: 100vh;
   background-color: #1a0931;
   position: sticky;
   left: 0;
+  top: 0;
   z-index: 1;
+  align-self: flex-start;
   /* position: fixed;
   left: 0;
   height: 100vh; */
@@ -37,7 +40,7 @@ button {
 
 .main-section h1 {
   font-weight: 600;
-  font-size: 20;
+  font-size: 20px;
   line-height: 24px;
 }
 
@@ -53,8 +56,11 @@ button {
   padding-top: 12px;
   padding-right: 12px;
   padding-left: 12px;
-  min-width: 306px;
+  width: 306px;
   margin-right: 16px;
+  align-self: flex-start;
+  box-sizing: border-box;
+  margin-bottom: 20px;
 }
 
 h4 {
@@ -64,7 +70,7 @@ h4 {
   color: #5d6372;
 }
 
-h4.subtitle {
+h4.description {
   font-weight: 600;
   font-size: 14px;
   color: #5d6372;
@@ -75,7 +81,9 @@ h4.subtitle {
   display: flex;
   align-items: center;
   margin-bottom: 14px;
+  margin-top: 6px;
   cursor: pointer;
+  width: 282px;
 }
 
 .add-wrapper p {
@@ -92,6 +100,16 @@ h4.subtitle {
 
 .card-container {
   margin-top: 16px;
+}
+
+.card-container .no-task {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+  color: #b7bdc9;
+  margin-bottom: 12px;
+  margin-top: 8px;
 }
 
 .overlay {
@@ -232,4 +250,7 @@ input.block {
 
 input.input-weight {
   width: 64px;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 19px;
 }

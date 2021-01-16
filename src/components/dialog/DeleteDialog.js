@@ -1,6 +1,18 @@
 import React from 'react'
+import happyApi from '../../api/happy'
 
-const DeleteDialog = ({onClose}) => {
+const DeleteDialog = ({ onClose, id, callback }) => {
+
+  const deleteHandler = async (e) => {
+    e.preventDefault()
+    try {
+      // const response = await happyApi.delete(`/tasks/${id}`)
+      callback()
+      onClose()
+    } catch (e) {
+    }
+  }
+
   return (
     <div className='dialog dialog-delete'>
       <div className="dialog-header">
@@ -10,7 +22,7 @@ const DeleteDialog = ({onClose}) => {
       <p>Are you sure want to delete this task? your action can't be reverted.</p>
       <div className="button-wrapper">
         <button className="clear" onClick={onClose}>Cancel</button>
-        <button className="danger">Delete</button>
+        <button className="danger" onClick={deleteHandler}>Delete</button>
       </div>
     </div>
   )
