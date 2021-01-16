@@ -3,14 +3,14 @@ import Modal from '../../layout/Modal'
 import Card from '../card/Card'
 import ManageTaskDialog from '../dialog/ManageTaskDialog'
 
-const Board = ({title, subtitle}) => {
+const Board = ({title, description}) => {
 
   const [isCreateOpen, setCreateOpen] = useState(false)
 
   return (
     <div className='board'>
       <h4>{title}</h4>
-      <h4 className="subtitle">{subtitle}</h4>
+      <h4 className="description">{description}</h4>
       <div className="card-container">
         <Card title='Re-designed the zero-g doggie bags. No more spills!' weight='64' />
         <Card title='Re-designed the zero-g doggie bags. No  spills!' weight='64' />
