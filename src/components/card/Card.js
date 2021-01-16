@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Dropdown from '../dropdown/Dropdown'
 import './Card.css'
 
-const Card = ({title, weight, id, position, moveLeft, moveRight}) => {
+const Card = ({title, weight, id, position, moveLeft, moveRight, removeTask}) => {
 
   const [isOpen, setOpen] = useState(false)
 
@@ -24,7 +24,14 @@ const Card = ({title, weight, id, position, moveLeft, moveRight}) => {
             <img src="/icons/dots.svg" alt="dot"/>
           </button>
           {isOpen && (
-            <Dropdown position={position} onClose={()=>setOpen(false)} data={{title, weight, id}} moveLeft={moveLeft} moveRight={moveRight}/>
+            <Dropdown 
+              position={position} 
+              onClose={()=>setOpen(false)} 
+              data={{title, weight, id}} 
+              moveLeft={moveLeft} 
+              moveRight={moveRight}
+              removeTask={removeTask}
+            />
           )}
         </div>
       </div>
