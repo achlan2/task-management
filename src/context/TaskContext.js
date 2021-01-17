@@ -12,6 +12,18 @@ const taskReducer = (state, action) => {
       }
     }
 
+    case 'edit_task': {
+      const { boardId, data, index } = action.payload
+      const edittedData = Array.from(state[boardId])
+      edittedData[index].title = data.title
+      edittedData[index].weight = data.weight
+      return {
+        ...state,
+        [boardId]: edittedData
+      }
+
+    }
+
     case 'add_task': {
       const { to, data } = action.payload
       let target = Array.from(state[to])
@@ -43,6 +55,7 @@ const taskReducer = (state, action) => {
       }
     }
     default:
+      console.log('default reducer', action.payload)
       return state
   }
 }
@@ -108,23 +121,13 @@ const moveTask = dispatch => async (from, to, data) => {
   }
 }
 
-const addTask = dispatch => async (boardId, title, weight) => {
+const addTask = dispatch => async (boardId, data) => {
 
   try {
 
-    const numValidate = /^\d+$/
-    let data = {}
-    if (numValidate.test(weight)) {
-      data = {
-        title, weight
-      }
-    } else {
-      data = { title }
-    }
 
     const response = await happyApi.post(`/boards/${boardId}/tasks`, data)
 
-    console.log('response', response.data)
     dispatch({
       type: 'add_task',
       payload: {
@@ -138,8 +141,19 @@ const addTask = dispatch => async (boardId, title, weight) => {
   }
 }
 
+const editTask = dispatch => async (id, boardId, data, index) => {
+  dispatch({
+    type: 'edit_task',
+    payload: {
+      boardId,
+      index,
+      data
+    }
+  })
+}
+
 export const { Provider, Context } = createDataContext(
   taskReducer,
-  { fetchTaskPerBoard, removeTask, moveTask, addTask },
+  { fetchTaskPerBoard, removeTask, moveTask, addTask, editTask },
   []
 )
