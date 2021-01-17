@@ -52,7 +52,10 @@ const Dropdown = ({ onClose, position, data, moveLeft, moveRight, removeTask, bo
       <Modal open={isEditOpen} onClose={() => setEditOpen(false)}>
         <ManageTaskDialog
           type='edit'
-          onClose={() => setEditOpen(false)}
+          onClose={(isCancel) => {
+            setEditOpen(false)
+            if (!isCancel) onClose()
+          }}
           data={data}
           boardId={boardId}
           index={cardIndex}

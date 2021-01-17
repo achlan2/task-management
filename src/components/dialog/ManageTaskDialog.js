@@ -37,7 +37,14 @@ const ManageTaskDialog = ({ onClose, type, data, boardId, index }) => {
     } else {
       editTask(data.id, boardId, formData, index)
     }
+
+    setName('')
+    setWeight('')
     onClose()
+  }
+
+  const cancelHandler = () => {
+    onClose(true);
   }
 
 
@@ -59,7 +66,7 @@ const ManageTaskDialog = ({ onClose, type, data, boardId, index }) => {
           </div>
         </div>
         <div className="button-wrapper">
-          <button className="clear" onClick={onClose}>Cancel</button>
+          <button className="clear" onClick={cancelHandler}>Cancel</button>
           <button className="primary" onClick={submitHandler}>Save Task</button>
         </div>
       </div>
