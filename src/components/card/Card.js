@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Dropdown from '../dropdown/Dropdown'
 import './Card.css'
 
-const Card = ({ title, weight, id, position, moveLeft, moveRight, removeTask, boardId }) => {
+const Card = ({ title, weight, id, position, moveLeft, moveRight, removeTask, boardId, cardIndex }) => {
 
   const [isOpen, setOpen] = useState(false)
 
@@ -34,6 +34,7 @@ const Card = ({ title, weight, id, position, moveLeft, moveRight, removeTask, bo
               moveRight={moveRight}
               removeTask={removeTask}
               boardId={boardId}
+              cardIndex={cardIndex}
             />
           )}
         </div>

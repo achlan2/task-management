@@ -15,6 +15,8 @@ const Board = ({ title, description, id, indexBoard, boardLength, nextId, prevId
     fetchTaskPerBoard(id).then(() => setListReady(true))
   }, [])
 
+  console.log('board data', id, state[id])
+
   return (
     <div className='board' key={id}>
       <h4>{title}</h4>
@@ -22,7 +24,7 @@ const Board = ({ title, description, id, indexBoard, boardLength, nextId, prevId
       {listReady && state[id].length !== 0 ?
         (
           <div className="card-container">
-            {state[id].map((card) => (
+            {state[id].map((card, index) => (
               <Card
                 key={card.id}
                 boardId={id}
@@ -33,6 +35,7 @@ const Board = ({ title, description, id, indexBoard, boardLength, nextId, prevId
                 moveLeft={() => moveTask(id, prevId, card)}
                 moveRight={() => moveTask(id, nextId, card)}
                 removeTask={() => removeTask(id, card.id)}
+                cardIndex={index}
               />
             ))
             }
