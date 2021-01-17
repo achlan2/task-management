@@ -1,15 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import './styles.css'
 
-const Modal = ({ children, open, onClose }) => {
-  if (!open) return null
+const Modal = ({ children, open, onClose, isCreate }) => {
+  // if (!open) return null
   return ReactDOM.createPortal(
-    <>
+    <div className={open ? isCreate ? 'modal-show-animated' : 'modal-show' : 'modal-hide'}>
       <div className="modal-overlay" onClick={onClose} />
-      <div className="modal">
-        {children}
-      </div>
-    </>,
+      {children}
+    </div>,
     document.getElementById('modal')
   )
 }

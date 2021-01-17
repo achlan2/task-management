@@ -1,5 +1,5 @@
 import React from 'react'
-import happyApi from '../../api/happy'
+import './styles.css'
 
 const DeleteDialog = ({ onClose, id, callback }) => {
 

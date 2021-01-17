@@ -5,7 +5,7 @@ import DeleteDialog from '../dialog/DeleteDialog'
 import ManageTaskDialog from '../dialog/ManageTaskDialog'
 import './Dropdown.css'
 
-const Dropdown = ({ onClose, position, data, moveLeft, moveRight, removeTask, boardId }) => {
+const Dropdown = ({ onClose, position, data, moveLeft, moveRight, removeTask, boardId, cardIndex }) => {
   const [isDeleteOpen, setDeleteOpen] = useState(false)
   const [isEditOpen, setEditOpen] = useState(false)
 
@@ -43,10 +43,20 @@ const Dropdown = ({ onClose, position, data, moveLeft, moveRight, removeTask, bo
         </li>
       </ul>
       <Modal open={isDeleteOpen} onClose={() => setDeleteOpen(false)}>
-        <DeleteDialog onClose={() => setDeleteOpen(false)} id={data.id} callback={removeTask} />
+        <DeleteDialog
+          onClose={() => setDeleteOpen(false)}
+          id={data.id}
+          callback={removeTask}
+        />
       </Modal>
       <Modal open={isEditOpen} onClose={() => setEditOpen(false)}>
-        <ManageTaskDialog type='edit' onClose={() => setEditOpen(false)} data={data} boardId={boardId} />
+        <ManageTaskDialog
+          type='edit'
+          onClose={() => setEditOpen(false)}
+          data={data}
+          boardId={boardId}
+          index={cardIndex}
+        />
       </Modal>
     </>
   )

@@ -1,9 +1,10 @@
 import createDataContext from './createDataContext'
 import happyApi from '../api/happy'
+import { REMOVE_TASK, EDIT_TASK, ADD_TASK, MOVE_TASK, FETCH_TASK, DRAG_TASK } from '../const/reducerConst'
 
 const taskReducer = (state, action) => {
   switch (action.type) {
-    case 'remove_task': {
+    case REMOVE_TASK: {
       const { from, id } = action.payload
       const filter = Array.from(state[from]).filter(task => task.id !== id)
       return {
@@ -12,45 +13,93 @@ const taskReducer = (state, action) => {
       }
     }
 
-    case 'add_task': {
-      const { to, data } = action.payload
-      let target = Array.from(state[to])
-      console.log('data reducer', data, target)
+    case EDIT_TASK: {
+      const { boardId, data, index } = action.payload
+      const edittedData = Array.from(state[boardId])
+      edittedData[index].title = data.title
+      edittedData[index].weight = data.weight
+      return {
+        ...state,
+        [boardId]: edittedData
+      }
+
+    }
+
+    case ADD_TASK: {
+      const { destination, data } = action.payload
+      let target = Array.from(state[destination])
       target.push(data)
       return {
         ...state,
-        [to]: target
+        [destination]: target
       }
     }
 
-    case 'move_task': {
-      const { from, to, data } = action.payload
+    case MOVE_TASK: {
+      const { from, destination, data } = action.payload
       const removed = Array.from(state[from]).filter(task => task.id !== data.id)
-      let target = Array.from(state[to])
+      let target = Array.from(state[destination])
       target.push(data)
+      // target.sort((a, b) => b.id - a.id)
       return {
         ...state,
         [from]: removed,
-        [to]: target
+        [destination]: target
       }
     }
-    case 'fetch_task': {
+    case FETCH_TASK: {
       const { boardId, data } = action.payload
+      // const sortedData = data.sort((a, b) => b.id - a.id)
       return {
         ...state,
         [boardId]: data
       }
+    }
+    case DRAG_TASK: {
+      const { source, destination } = action.payload
+      if (!destination) {
+        return state
+      }
+      let boardDataSource = Array.from(state[source.droppableId])
+      const taskSource = boardDataSource.slice(0)[source.index]
+      boardDataSource.splice(source.index, 1)
+
+      let returnData = {}
+      if (source.droppableId === destination.droppableId) {
+        boardDataSource.splice(destination.index, 0, taskSource)
+        returnData = {
+          ...state,
+          [source.droppableId]: boardDataSource
+        }
+      } else {
+        let destinationBoard = Array.from(state[destination.droppableId])
+        destinationBoard.splice(destination.index, 0, taskSource)
+        returnData = {
+          ...state,
+          [source.droppableId]: boardDataSource,
+          [destination.droppableId]: destinationBoard
+        }
+      }
+      // const target = Array.from(state[destination.droppableId])
+
+      return returnData
+
+
     }
     default:
       return state
   }
 }
 
+const requestMoveApi = async (id, destinationId) => {
+  await happyApi.put(`/tasks/${id}/move/target/${destinationId}`)
+}
+
 const fetchTaskPerBoard = dispatch => async (id) => {
   try {
     const response = await happyApi.get(`/boards/${id}/tasks`);
     dispatch({
-      type: 'fetch_task',
+      type: FETCH_TASK,
       payload: {
         data: response.data,
         boardId: id
@@ -66,7 +115,7 @@ const removeTask = dispatch => async (from, id) => {
   try {
 
     dispatch({
-      type: 'remove_task',
+      type: REMOVE_TASK,
       payload: {
         from,
         id
@@ -80,14 +129,14 @@ const removeTask = dispatch => async (from, id) => {
   }
 }
 
-const moveTask = dispatch => async (from, to, data) => {
+const moveTask = dispatch => async (from, destination, data) => {
   try {
 
     dispatch({
-      type: 'move_task',
+      type: MOVE_TASK,
       payload: {
         from,
-        to,
+        destination,
         data: {
           id: data.id,
           title: data.title,
@@ -95,39 +144,30 @@ const moveTask = dispatch => async (from, to, data) => {
           weight: data.weight,
           createdAt: data.createdAt,
           updatedAt: data.updatedAt,
-          boardId: to
+          boardId: destination
         }
       }
     })
 
-    await happyApi.put(`/tasks/${data.id}/move/target/${to}`)
+    requestMoveApi(data.id, destination)
+
 
   } catch (e) {
 
   }
 }
 
-const addTask = dispatch => async (boardId, title, weight) => {
+const addTask = dispatch => async (boardId, data) => {
 
   try {
 
-    const numValidate = /^\d+$/
-    let data = {}
-    if (numValidate.test(weight)) {
-      data = {
-        title, weight
-      }
-    } else {
-      data = { title }
-    }
 
     const response = await happyApi.post(`/boards/${boardId}/tasks`, data)
 
-    console.log('response', response.data)
     dispatch({
-      type: 'add_task',
+      type: ADD_TASK,
       payload: {
-        to: boardId,
+        destination: boardId,
         data: response.data
       }
     })
@@ -137,8 +177,38 @@ const addTask = dispatch => async (boardId, title, weight) => {
   }
 }
 
+const editTask = dispatch => async (id, boardId, data, index) => {
+  dispatch({
+    type: EDIT_TASK,
+    payload: {
+      boardId,
+      index,
+      data
+    }
+  })
+}
+
+const dragTask = dispatch => (result) => {
+
+  try {
+    const { source, destination, draggableId } = result
+    dispatch({
+      type: DRAG_TASK,
+      payload: {
+        source,
+        destination
+      }
+    })
+
+    requestMoveApi(draggableId, destination.droppableId)
+
+  } catch (error) {
+
+  }
+}
+
 export const { Provider, Context } = createDataContext(
   taskReducer,
-  { fetchTaskPerBoard, removeTask, moveTask, addTask },
+  { fetchTaskPerBoard, removeTask, moveTask, addTask, editTask, dragTask },
   []
 )
