@@ -22,8 +22,8 @@
   box-sizing: border-box;
   flex-wrap: wrap;
   height: auto;
-  animation-name: cardAnimation;
-  animation-duration: 0.5s;
+  /* animation-name: cardAnimation;
+  animation-duration: 0.5s; */
 }
 
 .title {
