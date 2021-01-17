@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# Happy5 | Task Management web application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is part of technical test for apply in Happy5
 
-## Available Scripts
+## Demo Project
 
-In the project directory, you can run:
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d9573829-a4b3-4509-9477-1538115e97c1/deploy-status)](https://app.netlify.com/sites/achlan-happy5-task/deploys) 
 
-### `yarn start`
+http://achlan-happy5-task.netlify.app
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `yarn test`
+## Instalation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Make sure you have already install nodejs and npm!
 
-### `yarn build`
+```bash
+# install dependencies
+npm install
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+And then goto [localhost:3000](localhost:3000)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Client Setup
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Before running the application, we need to configure an environtment variable, let's create `.env` file in client's root project, open and edit it, then input the code below.
 
-### `yarn eject`
+```
+REACT_APP_TOKEN=YOUR_TOKEN
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Run Apps
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+After you finishin setups above you can run this Application using
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+# run in dev
+npm start
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Built With
 
-## Learn More
+- [React JS](https://reactjs.org/)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Author
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Achlan Bima Nurachman** - [achlanbima](https://github.com/achlanbima)
