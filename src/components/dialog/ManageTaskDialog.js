@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Context as TaskContext } from '../../context/TaskContext'
 
-const ManageTaskDialog = ({ onClose, type, data, boardId }) => {
+const ManageTaskDialog = ({ onClose, type, data, boardId, index }) => {
 
   const [name, setName] = useState('')
   const [weight, setWeight] = useState('')
 
-  const { addTask } = useContext(TaskContext)
+  const { addTask, editTask } = useContext(TaskContext)
 
   useEffect(() => {
     if (type !== 'create') {
@@ -16,8 +16,25 @@ const ManageTaskDialog = ({ onClose, type, data, boardId }) => {
   }, [])
 
   const submitHandler = (e) => {
+
+    const numValidate = /^\d+$/
+    let formData = {}
+    if (numValidate.test(weight)) {
+      formData = {
+        title: name,
+        weight
+      }
+    } else {
+      formData = {
+        title: name,
+        weight: data.weight
+      }
+    }
+
     if (type === 'create') {
-      addTask(boardId, name, weight)
+      addTask(boardId, formData)
+    } else {
+      editTask(data.id, boardId, formData, index)
     }
     onClose()
   }
