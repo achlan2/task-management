@@ -16,7 +16,7 @@ const Board = ({ title, description, id, indexBoard, boardLength, nextId, prevId
     fetchTaskPerBoard(id).then(() => setListReady(true))
   }, [])
 
-  console.log('board data', id, state[id])
+  // console.log('board data', id, state[id])
 
   return (
     <div className='board' key={id}>

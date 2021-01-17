@@ -87,9 +87,12 @@ const taskReducer = (state, action) => {
 
     }
     default:
-      console.log('default reducer', action.payload)
       return state
   }
+}
+
+const requestMoveApi = async (id, destinationId) => {
+  await happyApi.put(`/tasks/${id}/move/target/${destinationId}`)
 }
 
 const fetchTaskPerBoard = dispatch => async (id) => {
@@ -146,7 +149,8 @@ const moveTask = dispatch => async (from, to, data) => {
       }
     })
 
-    await happyApi.put(`/tasks/${data.id}/move/target/${to}`)
+    requestMoveApi(data.id, to)
+
 
   } catch (e) {
 
@@ -185,14 +189,22 @@ const editTask = dispatch => async (id, boardId, data, index) => {
 }
 
 const dragTask = dispatch => (result) => {
-  const { source, destination } = result
-  dispatch({
-    type: DRAG_TASK,
-    payload: {
-      source,
-      destination
-    }
-  })
+
+  try {
+    const { source, destination, draggableId } = result
+    dispatch({
+      type: DRAG_TASK,
+      payload: {
+        source,
+        destination
+      }
+    })
+
+    requestMoveApi(draggableId, destination.droppableId)
+
+  } catch (error) {
+
+  }
 }
 
 export const { Provider, Context } = createDataContext(
