@@ -1,6 +1,7 @@
 .dropdown {
   position: absolute;
   right: 0;
+  top: 40px;
   background: #ffffff;
   border: 1px solid #e4e4e8;
   border-radius: 4px;
@@ -12,8 +13,17 @@
 }
 
 .dropdown li {
-  padding: 6px 16px;
+  padding: 4px 16px;
   display: flex;
+  align-items: center;
+}
+
+.dropdown li p{
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  height: 20px;
 }
 
 .dropdown li:hover {
