@@ -49,7 +49,7 @@ const ManageTaskDialog = ({ onClose, type, data, boardId, index }) => {
       <div className="form">
         <div className="form-control">
           <p className='label'>Task Name</p>
-          <input type="text" placeholder='exampe: Build rocket to Mars.' className='block' value={name} onChange={(e) => setName(e.target.value)} />
+          <input type="text" placeholder='example: Build rocket to Mars.' className='block' value={name} onChange={(e) => setName(e.target.value)} />
         </div>
         <div className="form-control">
           <p className='label'>Weight</p>
