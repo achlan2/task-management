@@ -2,21 +2,19 @@ import React, { useContext, useEffect } from 'react'
 import { DragDropContext } from 'react-beautiful-dnd'
 import Board from '../components/board/Board'
 import { Context as BoardContext } from '../context/BoardContext'
+import { Context as TaskContext } from '../context/TaskContext'
 
 const Main = () => {
 
   const { fetchBoard, state } = useContext(BoardContext)
+  const { dragTask } = useContext(TaskContext)
 
   useEffect(() => {
     fetchBoard()
   }, [])
 
   return (
-    <DragDropContext onDragEnd={(result) => {
-      console.log('result.source')
-    }}
-      onDragStart={() => console.log('drag')}
-    >
+    <DragDropContext onDragEnd={dragTask}>
       <div className='main-container'>
         {state.length !== 0 ?
           state.map((board, index) => (
