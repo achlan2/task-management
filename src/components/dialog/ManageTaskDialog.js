@@ -37,6 +37,9 @@ const ManageTaskDialog = ({ onClose, type, data, boardId, index }) => {
     } else {
       editTask(data.id, boardId, formData, index)
     }
+
+    setName('')
+    setWeight('')
     onClose()
   }
 
