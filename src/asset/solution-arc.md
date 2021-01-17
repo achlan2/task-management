@@ -96,3 +96,8 @@ This apps using Drag and drop function
 * Setup netlify
 * Test apps manually
 * Comparing with design
+
+
+
+### Bugs
+* app still can drag and move card to same board with different position(index). but when the browser restarts, card position back as before. This happens because the API has not provided an endpoint for the card to switch indexes with the same board
