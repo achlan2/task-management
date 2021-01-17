@@ -84,10 +84,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: 0.5s;
 }
 
 .action-container .button-wrapper button:hover {
   background-color: #f2f2f4;
+  /* transition: 0.5s; */
 }
 
 .grey {
