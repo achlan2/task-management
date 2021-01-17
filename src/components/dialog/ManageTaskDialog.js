@@ -19,7 +19,11 @@ const ManageTaskDialog = ({ onClose, type, data, boardId, index }) => {
   const submitHandler = (e) => {
 
     const numValidate = /^\d+$/
+
     let formData = {}
+
+    if (weight === '' || name === '') return
+
     if (numValidate.test(weight)) {
       formData = {
         title: name,
@@ -28,7 +32,7 @@ const ManageTaskDialog = ({ onClose, type, data, boardId, index }) => {
     } else {
       formData = {
         title: name,
-        weight: data.weight
+        weight: type === 'create' ? '' : data.weight
       }
     }
 

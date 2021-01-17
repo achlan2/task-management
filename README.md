@@ -39,6 +39,14 @@ npm start
 
 And then goto [localhost:3000](localhost:3000)
 
+## Screenshot
+<img src="https://github.com/achlan2/task-management/blob/master/src/asset/screenshot.png?raw=true" />
+
+# Solution Architecture
+https://github.com/achlan2/task-management/blob/master/src/asset/solution-arc.md
+
+
+
 ## Built With
 
 - [React JS](https://reactjs.org/)
