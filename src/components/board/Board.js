@@ -49,7 +49,7 @@ const Board = ({ title, description, id, indexBoard, boardLength, nextId, prevId
         </div>
         <p>Create new task</p>
       </div>
-      <Modal open={isCreateOpen} onClose={() => setCreateOpen(false)}>
+      <Modal open={isCreateOpen} onClose={() => setCreateOpen(false)} isCreate={true}>
         <ManageTaskDialog onClose={() => setCreateOpen(false)} type='create' boardId={id} />
       </Modal>
     </div>
