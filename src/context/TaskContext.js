@@ -1,9 +1,10 @@
 import createDataContext from './createDataContext'
 import happyApi from '../api/happy'
+import { REMOVE_TASK, EDIT_TASK, ADD_TASK, MOVE_TASK, FETCH_TASK } from '../const/reducerConst'
 
 const taskReducer = (state, action) => {
   switch (action.type) {
-    case 'remove_task': {
+    case REMOVE_TASK: {
       const { from, id } = action.payload
       const filter = Array.from(state[from]).filter(task => task.id !== id)
       return {
@@ -12,7 +13,7 @@ const taskReducer = (state, action) => {
       }
     }
 
-    case 'edit_task': {
+    case EDIT_TASK: {
       const { boardId, data, index } = action.payload
       const edittedData = Array.from(state[boardId])
       edittedData[index].title = data.title
@@ -24,7 +25,7 @@ const taskReducer = (state, action) => {
 
     }
 
-    case 'add_task': {
+    case ADD_TASK: {
       const { to, data } = action.payload
       let target = Array.from(state[to])
       target.push(data)
@@ -34,7 +35,7 @@ const taskReducer = (state, action) => {
       }
     }
 
-    case 'move_task': {
+    case MOVE_TASK: {
       const { from, to, data } = action.payload
       const removed = Array.from(state[from]).filter(task => task.id !== data.id)
       let target = Array.from(state[to])
@@ -46,7 +47,7 @@ const taskReducer = (state, action) => {
         [to]: target
       }
     }
-    case 'fetch_task': {
+    case FETCH_TASK: {
       const { boardId, data } = action.payload
       // const sortedData = data.sort((a, b) => b.id - a.id)
       return {
@@ -64,7 +65,7 @@ const fetchTaskPerBoard = dispatch => async (id) => {
   try {
     const response = await happyApi.get(`/boards/${id}/tasks`);
     dispatch({
-      type: 'fetch_task',
+      type: FETCH_TASK,
       payload: {
         data: response.data,
         boardId: id
@@ -80,7 +81,7 @@ const removeTask = dispatch => async (from, id) => {
   try {
 
     dispatch({
-      type: 'remove_task',
+      type: REMOVE_TASK,
       payload: {
         from,
         id
@@ -98,7 +99,7 @@ const moveTask = dispatch => async (from, to, data) => {
   try {
 
     dispatch({
-      type: 'move_task',
+      type: MOVE_TASK,
       payload: {
         from,
         to,
@@ -129,7 +130,7 @@ const addTask = dispatch => async (boardId, data) => {
     const response = await happyApi.post(`/boards/${boardId}/tasks`, data)
 
     dispatch({
-      type: 'add_task',
+      type: ADD_TASK,
       payload: {
         to: boardId,
         data: response.data
@@ -143,7 +144,7 @@ const addTask = dispatch => async (boardId, data) => {
 
 const editTask = dispatch => async (id, boardId, data, index) => {
   dispatch({
-    type: 'edit_task',
+    type: EDIT_TASK,
     payload: {
       boardId,
       index,
