@@ -1,6 +1,6 @@
 import createDataContext from './createDataContext'
 import happyApi from '../api/happy'
-import { REMOVE_TASK, EDIT_TASK, ADD_TASK, MOVE_TASK, FETCH_TASK } from '../const/reducerConst'
+import { REMOVE_TASK, EDIT_TASK, ADD_TASK, MOVE_TASK, FETCH_TASK, DRAG_TASK } from '../const/reducerConst'
 
 const taskReducer = (state, action) => {
   switch (action.type) {
@@ -26,25 +26,25 @@ const taskReducer = (state, action) => {
     }
 
     case ADD_TASK: {
-      const { to, data } = action.payload
-      let target = Array.from(state[to])
+      const { destination, data } = action.payload
+      let target = Array.from(state[destination])
       target.push(data)
       return {
         ...state,
-        [to]: target
+        [destination]: target
       }
     }
 
     case MOVE_TASK: {
-      const { from, to, data } = action.payload
+      const { from, destination, data } = action.payload
       const removed = Array.from(state[from]).filter(task => task.id !== data.id)
-      let target = Array.from(state[to])
+      let target = Array.from(state[destination])
       target.push(data)
       // target.sort((a, b) => b.id - a.id)
       return {
         ...state,
         [from]: removed,
-        [to]: target
+        [destination]: target
       }
     }
     case FETCH_TASK: {
@@ -55,10 +55,44 @@ const taskReducer = (state, action) => {
         [boardId]: data
       }
     }
+    case DRAG_TASK: {
+      const { source, destination } = action.payload
+      if (!destination) {
+        return state
+      }
+      let boardDataSource = Array.from(state[source.droppableId])
+      const taskSource = boardDataSource.slice(0)[source.index]
+      boardDataSource.splice(source.index, 1)
+
+      let returnData = {}
+      if (source.droppableId === destination.droppableId) {
+        boardDataSource.splice(destination.index, 0, taskSource)
+        returnData = {
+          ...state,
+          [source.droppableId]: boardDataSource
+        }
+      } else {
+        let destinationBoard = Array.from(state[destination.droppableId])
+        destinationBoard.splice(destination.index, 0, taskSource)
+        returnData = {
+          ...state,
+          [source.droppableId]: boardDataSource,
+          [destination.droppableId]: destinationBoard
+        }
+      }
+      // const target = Array.from(state[destination.droppableId])
+
+      return returnData
+
+
+    }
     default:
-      console.log('default reducer', action.payload)
       return state
   }
+}
+
+const requestMoveApi = async (id, destinationId) => {
+  await happyApi.put(`/tasks/${id}/move/target/${destinationId}`)
 }
 
 const fetchTaskPerBoard = dispatch => async (id) => {
@@ -95,14 +129,14 @@ const removeTask = dispatch => async (from, id) => {
   }
 }
 
-const moveTask = dispatch => async (from, to, data) => {
+const moveTask = dispatch => async (from, destination, data) => {
   try {
 
     dispatch({
       type: MOVE_TASK,
       payload: {
         from,
-        to,
+        destination,
         data: {
           id: data.id,
           title: data.title,
@@ -110,12 +144,13 @@ const moveTask = dispatch => async (from, to, data) => {
           weight: data.weight,
           createdAt: data.createdAt,
           updatedAt: data.updatedAt,
-          boardId: to
+          boardId: destination
         }
       }
     })
 
-    await happyApi.put(`/tasks/${data.id}/move/target/${to}`)
+    requestMoveApi(data.id, destination)
+
 
   } catch (e) {
 
@@ -132,7 +167,7 @@ const addTask = dispatch => async (boardId, data) => {
     dispatch({
       type: ADD_TASK,
       payload: {
-        to: boardId,
+        destination: boardId,
         data: response.data
       }
     })
@@ -153,8 +188,27 @@ const editTask = dispatch => async (id, boardId, data, index) => {
   })
 }
 
+const dragTask = dispatch => (result) => {
+
+  try {
+    const { source, destination, draggableId } = result
+    dispatch({
+      type: DRAG_TASK,
+      payload: {
+        source,
+        destination
+      }
+    })
+
+    requestMoveApi(draggableId, destination.droppableId)
+
+  } catch (error) {
+
+  }
+}
+
 export const { Provider, Context } = createDataContext(
   taskReducer,
-  { fetchTaskPerBoard, removeTask, moveTask, addTask, editTask },
+  { fetchTaskPerBoard, removeTask, moveTask, addTask, editTask, dragTask },
   []
 )

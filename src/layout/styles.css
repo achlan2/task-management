@@ -1,0 +1,52 @@
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+
+@keyframes fadeIn {
+  0% { opacity: .5;}
+  100% { opacity: 1;}
+}
+
+/* @keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+} */
+
+
+
+.modal-show{
+  visibility: visible;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.modal-hide{
+  /* animation-name: fadeOut;
+  animation-duration: 1s; */
+  visibility: hidden;
+}
+
+.modal-show-animated{
+  animation-name: fadeIn;
+  animation-duration: 0.1s;
+  visibility: visible;
+  z-index: 10;
+  overflow: hidden;
+}

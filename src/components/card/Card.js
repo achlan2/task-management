@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Draggable } from 'react-beautiful-dnd'
 import Dropdown from '../dropdown/Dropdown'
 import './Card.css'
 
@@ -11,35 +12,47 @@ const Card = ({ title, weight, id, position, moveLeft, moveRight, removeTask, bo
     setOpen(isOpen => !isOpen)
   }
 
+
   return (
-    <div className='card' key={id}>
-      <h3 className="title">{title}</h3>
-      <div className="action-container">
-        <div className="weight">
-          <div className="weight-wrapper">
-            <img src="/icons/weight.svg" alt="weight-icon" />
+    <Draggable draggableId={`${id}`} index={cardIndex}>
+      {provided => (
+
+        <div
+          className='card'
+          key={`${id}`}
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+        >
+          <h3 className="title">{title}</h3>
+          <div className="action-container">
+            <div className="weight">
+              <div className="weight-wrapper">
+                <img src="/icons/weight.svg" alt="weight-icon" />
+              </div>
+              <p>{weight}%</p>
+            </div>
+            <div className={!isOpen ? "button-wrapper" : "button-wrapper grey"}>
+              <button onClick={dropdownToggle}>
+                <img src="/icons/dots.svg" alt="dot" />
+              </button>
+              {isOpen && (
+                <Dropdown
+                  position={position}
+                  onClose={() => setOpen(false)}
+                  data={{ title, weight, id }}
+                  moveLeft={moveLeft}
+                  moveRight={moveRight}
+                  removeTask={removeTask}
+                  boardId={boardId}
+                  cardIndex={cardIndex}
+                />
+              )}
+            </div>
           </div>
-          <p>{weight}%</p>
         </div>
-        <div className={!isOpen ? "button-wrapper" : "button-wrapper grey"}>
-          <button onClick={dropdownToggle}>
-            <img src="/icons/dots.svg" alt="dot" />
-          </button>
-          {isOpen && (
-            <Dropdown
-              position={position}
-              onClose={() => setOpen(false)}
-              data={{ title, weight, id }}
-              moveLeft={moveLeft}
-              moveRight={moveRight}
-              removeTask={removeTask}
-              boardId={boardId}
-              cardIndex={cardIndex}
-            />
-          )}
-        </div>
-      </div>
-    </div>
+      )}
+    </Draggable>
   )
 }
 
