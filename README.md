@@ -25,6 +25,7 @@ Before running the application, we need to configure an environtment variable, l
 
 ```
 REACT_APP_TOKEN=YOUR_TOKEN
+REACT_APP_BASE_URL=https://hapi5-api.herokuapp.com
 ```
 
 ### Run Apps
