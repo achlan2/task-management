@@ -26,25 +26,25 @@ const taskReducer = (state, action) => {
     }
 
     case ADD_TASK: {
-      const { to, data } = action.payload
-      let target = Array.from(state[to])
+      const { destination, data } = action.payload
+      let target = Array.from(state[destination])
       target.push(data)
       return {
         ...state,
-        [to]: target
+        [destination]: target
       }
     }
 
     case MOVE_TASK: {
-      const { from, to, data } = action.payload
+      const { from, destination, data } = action.payload
       const removed = Array.from(state[from]).filter(task => task.id !== data.id)
-      let target = Array.from(state[to])
+      let target = Array.from(state[destination])
       target.push(data)
       // target.sort((a, b) => b.id - a.id)
       return {
         ...state,
         [from]: removed,
-        [to]: target
+        [destination]: target
       }
     }
     case FETCH_TASK: {
@@ -129,14 +129,14 @@ const removeTask = dispatch => async (from, id) => {
   }
 }
 
-const moveTask = dispatch => async (from, to, data) => {
+const moveTask = dispatch => async (from, destination, data) => {
   try {
 
     dispatch({
       type: MOVE_TASK,
       payload: {
         from,
-        to,
+        destination,
         data: {
           id: data.id,
           title: data.title,
@@ -144,12 +144,12 @@ const moveTask = dispatch => async (from, to, data) => {
           weight: data.weight,
           createdAt: data.createdAt,
           updatedAt: data.updatedAt,
-          boardId: to
+          boardId: destination
         }
       }
     })
 
-    requestMoveApi(data.id, to)
+    requestMoveApi(data.id, destination)
 
 
   } catch (e) {
@@ -167,7 +167,7 @@ const addTask = dispatch => async (boardId, data) => {
     dispatch({
       type: ADD_TASK,
       payload: {
-        to: boardId,
+        destination: boardId,
         data: response.data
       }
     })
