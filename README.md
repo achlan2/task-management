@@ -19,8 +19,6 @@ Make sure you have already install nodejs and npm!
 npm install
 ```
 
-And then goto [localhost:3000](localhost:3000)
-
 ### Client Setup
 
 Before running the application, we need to configure an environtment variable, let's create `.env` file in client's root project, open and edit it, then input the code below.
@@ -37,6 +35,8 @@ After you finishin setups above you can run this Application using
 # run in dev
 npm start
 ```
+
+And then goto [localhost:3000](localhost:3000)
 
 ## Built With
 
