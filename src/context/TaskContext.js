@@ -192,6 +192,11 @@ const dragTask = dispatch => (result) => {
 
   try {
     const { source, destination, draggableId } = result
+
+    if (source.droppableId === destination.droppableId && source.index === destination.index) {
+      return
+    }
+    console.log('edit run!')
     dispatch({
       type: DRAG_TASK,
       payload: {
@@ -200,7 +205,9 @@ const dragTask = dispatch => (result) => {
       }
     })
 
-    requestMoveApi(draggableId, destination.droppableId)
+    if (source.droppableId !== destination.droppableId) {
+      requestMoveApi(draggableId, destination.droppableId)
+    }
 
   } catch (error) {
 
