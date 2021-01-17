@@ -1,6 +1,6 @@
 import createDataContext from './createDataContext'
 import happyApi from '../api/happy'
-import { REMOVE_TASK, EDIT_TASK, ADD_TASK, MOVE_TASK, FETCH_TASK } from '../const/reducerConst'
+import { REMOVE_TASK, EDIT_TASK, ADD_TASK, MOVE_TASK, FETCH_TASK, DRAG_TASK } from '../const/reducerConst'
 
 const taskReducer = (state, action) => {
   switch (action.type) {
@@ -54,6 +54,37 @@ const taskReducer = (state, action) => {
         ...state,
         [boardId]: data
       }
+    }
+    case DRAG_TASK: {
+      const { source, destination } = action.payload
+      if (!destination) {
+        return state
+      }
+      let boardDataSource = Array.from(state[source.droppableId])
+      const taskSource = boardDataSource.slice(0)[source.index]
+      boardDataSource.splice(source.index, 1)
+
+      let returnData = {}
+      if (source.droppableId === destination.droppableId) {
+        boardDataSource.splice(destination.index, 0, taskSource)
+        returnData = {
+          ...state,
+          [source.droppableId]: boardDataSource
+        }
+      } else {
+        let destinationBoard = Array.from(state[destination.droppableId])
+        destinationBoard.splice(destination.index, 0, taskSource)
+        returnData = {
+          ...state,
+          [source.droppableId]: boardDataSource,
+          [destination.droppableId]: destinationBoard
+        }
+      }
+      // const target = Array.from(state[destination.droppableId])
+
+      return returnData
+
+
     }
     default:
       console.log('default reducer', action.payload)
@@ -153,8 +184,19 @@ const editTask = dispatch => async (id, boardId, data, index) => {
   })
 }
 
+const dragTask = dispatch => (result) => {
+  const { source, destination } = result
+  dispatch({
+    type: DRAG_TASK,
+    payload: {
+      source,
+      destination
+    }
+  })
+}
+
 export const { Provider, Context } = createDataContext(
   taskReducer,
-  { fetchTaskPerBoard, removeTask, moveTask, addTask, editTask },
+  { fetchTaskPerBoard, removeTask, moveTask, addTask, editTask, dragTask },
   []
 )
