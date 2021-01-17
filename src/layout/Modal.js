@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import './styles.css'
 
 const Modal = ({ children, open, onClose, isCreate }) => {
   // if (!open) return null

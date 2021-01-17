@@ -4,6 +4,7 @@ import Card from '../card/Card'
 import ManageTaskDialog from '../dialog/ManageTaskDialog'
 import { Context as TaskContext } from '../../context/TaskContext'
 import { Draggable, Droppable } from 'react-beautiful-dnd'
+import './Board.css'
 
 const Board = ({ title, description, id, indexBoard, boardLength, nextId, prevId }) => {
 
