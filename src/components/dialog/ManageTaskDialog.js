@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Context as TaskContext } from '../../context/TaskContext'
+import { Context as TaskContext } from '../../state/context/TaskContext'
 import './styles.css'
 
 const ManageTaskDialog = ({ onClose, type, data, boardId, index }) => {

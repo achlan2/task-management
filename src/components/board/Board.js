@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import Modal from '../../layout/Modal'
 import Card from '../card/Card'
 import ManageTaskDialog from '../dialog/ManageTaskDialog'
-import { Context as TaskContext } from '../../context/TaskContext'
+import { Context as TaskContext } from '../../state/context/TaskContext'
 import { Draggable, Droppable } from 'react-beautiful-dnd'
 import './Board.css'
 

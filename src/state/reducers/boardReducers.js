@@ -1,4 +1,4 @@
-import { FETCH_BOARD } from "../const/reducerConst"
+import { FETCH_BOARD } from "../../const/reducerConst"
 
 export const boardReducer = (state, action) => {
   switch (action.type) {

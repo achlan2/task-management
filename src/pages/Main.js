@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from 'react'
 import { DragDropContext } from 'react-beautiful-dnd'
 import Board from '../components/board/Board'
-import { Context as BoardContext } from '../context/BoardContext'
-import { Context as TaskContext } from '../context/TaskContext'
+import { Context as BoardContext } from '../state/context/BoardContext'
+import { Context as TaskContext } from '../state/context/TaskContext'
 
 const Main = () => {
 
