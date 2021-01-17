@@ -1,4 +1,4 @@
-import { REMOVE_TASK, EDIT_TASK, ADD_TASK, MOVE_TASK, FETCH_TASK, DRAG_TASK } from "../const/reducerConst";
+import { REMOVE_TASK, EDIT_TASK, ADD_TASK, MOVE_TASK, FETCH_TASK, DRAG_TASK } from "../../const/reducerConst";
 
 export const taskReducer = (state, action) => {
   switch (action.type) {

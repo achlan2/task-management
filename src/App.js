@@ -1,8 +1,8 @@
 import React from 'react'
 import "./App.css";
 import Main from './pages/Main';
-import { Provider as BoardProvider } from './context/BoardContext'
-import { Provider as TaskProvider } from './context/TaskContext'
+import { Provider as BoardProvider } from './state/context/BoardContext'
+import { Provider as TaskProvider } from './state/context/TaskContext'
 
 const App = () => {
   return (

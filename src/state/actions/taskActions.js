@@ -1,5 +1,5 @@
-import { REMOVE_TASK, EDIT_TASK, ADD_TASK, MOVE_TASK, FETCH_TASK, DRAG_TASK } from "../const/reducerConst";
-import happyApi from '../api/happy'
+import { REMOVE_TASK, EDIT_TASK, ADD_TASK, MOVE_TASK, FETCH_TASK, DRAG_TASK } from "../../const/reducerConst";
+import happyApi from '../../api/happy'
 
 const requestMoveApi = async (id, destinationId) => {
   await happyApi.put(`/tasks/${id}/move/target/${destinationId}`)
