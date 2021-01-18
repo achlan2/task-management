@@ -34,9 +34,9 @@ This version apps directly get data from API without global state management.
   * Main Board
   * Add Button Section
   * Card Component
-  * Popup Component
-  * Handle Popup Content (right/left button)
-  * Popup Overlay Component
+  * Dropdown Component
+  * Handle Dropdown Content (right/left button)
+  * Dropdown Overlay Component
   * Modal Container (react-portal)
   * Modal Overlay
   * Form Manage Task (Add/Edit)
