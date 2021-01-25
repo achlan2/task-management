@@ -34,9 +34,9 @@ This version apps directly get data from API without global state management.
   * Main Board
   * Add Button Section
   * Card Component
-  * Popup Component
-  * Handle Popup Content (right/left button)
-  * Popup Overlay Component
+  * Dropdown Component
+  * Handle Dropdown Content (right/left button)
+  * Dropdown Overlay Component
   * Modal Container (react-portal)
   * Modal Overlay
   * Form Manage Task (Add/Edit)
@@ -99,5 +99,5 @@ This apps using Drag and drop function
 
 
 
-### Bugs
-* app still can drag and move card to same board with different position(index). but when the browser restarts, card position back as before. This happens because the API has not provided an endpoint for the card to switch indexes with the same board. It is the same as when the card moves to another board, then when the browser refreshes, the position of the card on the board will be different from before. because the endpoint 'move task' does not yet provide to set indexes inside the board.
+## Bugs
+* The app still can drag and move the card to the same board with different position(index). but when the browser restarts, card position back as before. This happens because the API has not provided an endpoint for the card to switch indexes with the same board. It is the same as when the card moves to another board, then when the browser refreshes, the position of the card on the board will be different from before. because the endpoint 'move task' does not yet provide to set indexes inside the board.
