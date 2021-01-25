@@ -88,14 +88,18 @@ export const addTask = dispatch => async (boardId, data) => {
 }
 
 export const editTask = dispatch => async (id, boardId, data, index) => {
+
+  const response = await happyApi.put(`/tasks/${id}`, data);
+
   dispatch({
     type: EDIT_TASK,
     payload: {
       boardId,
       index,
-      data
+      data: response.data
     }
   })
+
 }
 
 export const dragTask = dispatch => (result) => {
