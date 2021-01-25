@@ -14,8 +14,7 @@ export const taskReducer = (state, action) => {
     case EDIT_TASK: {
       const { boardId, data, index } = action.payload
       const edittedData = Array.from(state[boardId])
-      edittedData[index].title = data.title
-      edittedData[index].weight = data.weight
+      edittedData[index] = data
       return {
         ...state,
         [boardId]: edittedData
